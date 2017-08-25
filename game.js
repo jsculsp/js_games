@@ -2,6 +2,15 @@
  * Created by linmu on 2017/8/25.
  */
 
+const firstInSecond = function(a, b) {
+    if (b.y > a.y && b.y < a.y + a.image.height) {
+        if (b.x > a.x && b.x < a.x + a.image.width) {
+            return true
+        }
+    }
+    return false
+}
+
 const imageFromPath = function (path) {
     let img = new Image()
     img.src = path
@@ -9,7 +18,7 @@ const imageFromPath = function (path) {
 }
 
 const Paddle = function () {
-    let image = imageFromPath('paddle.png')
+    let image = imageFromPath('pictures/paddle.png')
     let o = {
         image: image,
         x: 100,
@@ -34,7 +43,7 @@ const Paddle = function () {
 }
 
 const Ball = function () {
-    let image = imageFromPath('ball.png')
+    let image = imageFromPath('pictures/ball.png')
     let o = {
         image: image,
         x: 140,
@@ -68,8 +77,29 @@ const Ball = function () {
     return o
 }
 
+const Block = function () {
+    let image = imageFromPath('pictures/purple_block.png')
+    let o = {
+        image: image,
+        x: 100,
+        y: 100,
+        w: 50,
+        h: 20,
+        alive: true,
+    }
+    o.kill = function () {
+        this.alive = false
+    }
+    o.collide = function (b) {
+        return o.alive && (firstInSecond(b, this) || firstInSecond(this, b))
+    }
+    return o
+}
+
 const BallGame = function () {
     let canvas = document.querySelector('#id-canvas')
+    canvas.style['background'] = 'url(pictures/background.jpg) no-repeat'
+    canvas.style['background-size'] = 'cover'
     let context = canvas.getContext('2d')
     let g = {
         canvas: canvas,
@@ -120,6 +150,7 @@ const __main = function () {
 
     let paddle = Paddle()
     let ball = Ball()
+    let block = Block()
 
     game.registerAction('a', function () {
         paddle.moveLeft()
@@ -138,8 +169,13 @@ const __main = function () {
 
     game.update = function () {
         ball.move()
-        // 判断相撞
+        // 判断 paddle 和 ball 相撞
         if (paddle.collide(ball)) {
+            ball.rebound()
+        }
+        // 判断 ball 和 block 相撞
+        if (block.collide(ball)) {
+            block.kill()
             ball.rebound()
         }
     }
@@ -147,6 +183,9 @@ const __main = function () {
         // draw
         game.drawImage(paddle)
         game.drawImage(ball)
+        if (block.alive) {
+            game.drawImage(block)
+        }
     }
 }
 
