@@ -2,16 +2,15 @@
  * Created by linmu on 2017/8/26.
  */
 
-const Ball = function () {
-    let image = imageFromPath('pictures/ball.png')
-    let o = {
-        image: image,
+const Ball = function (game) {
+    let o = game.imageByName('ball')
+    Object.assign(o, {
         x: 140,
         y: 231,
         speedX: 5,
-        speedY: 5,
+        speedY: -5,
         fired: false,
-    }
+    })
     o.fire = function () {
         this.fired = true
     }

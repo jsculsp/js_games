@@ -2,14 +2,13 @@
  * Created by linmu on 2017/8/26.
  */
 
-const Paddle = function () {
-    let image = imageFromPath('pictures/paddle.png')
-    let o = {
-        image: image,
+const Paddle = function (game) {
+    let o = game.imageByName('paddle')
+    Object.assign(o, {
         x: 100,
         y: 250,
         speed: 5,
-    }
+    })
     o.moveTo = function (x) {
         if (x < 0) {
             x = 0
