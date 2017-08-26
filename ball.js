@@ -31,8 +31,5 @@ const Ball = function () {
             o.y += o.speedY
         }
     }
-    o.pause = function () {
-        this.fired = !this.fired
-    }
     return o
 }
