@@ -19,10 +19,10 @@ const Ball = function (game) {
     }
     o.move = function () {
         if (this.fired) {
-            if (o.x < 0 || o.x + o.image.width > 400) {
+            if (o.x < 0 || o.x + o.w > 400) {
                 o.speedX *= -1
             }
-            if (o.y < 0 || o.y + o.image.height > 300) {
+            if (o.y < 0 || o.y + o.h > 300) {
                 o.speedY *= -1
             }
             // move
