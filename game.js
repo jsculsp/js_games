@@ -30,8 +30,8 @@ const BallGame = function (fps) {
         g.actions[key] = callback
     }
 
-    // timer
-    setInterval(function () {
+    window.fps = fps
+    const runloop = function () {
         // events
         let actions = Object.keys(g.actions)
         for (let i = 0; i < actions.length; i++) {
@@ -47,6 +47,10 @@ const BallGame = function (fps) {
         g.context.clearRect(0, 0, canvas.width, canvas.height)
         // draw
         g.draw()
-    }, 1000/fps)
+        setTimeout(arguments.callee, 1000 / window.fps)
+    }
+
+    // timer
+    setTimeout(runloop, 1000 / fps)
     return g
 }

@@ -17,6 +17,13 @@ let enableDebugMode = function (enable) {
             // 为了 debug 临时加的载入关卡功能
             blocks = loadLevel(parseInt(k))
         }
+        // 控制速度
+        let speedController = _e('#id-input-speed')
+        speedController.addEventListener('input', function (event) {
+            let input = event.target
+            input.value = input.value <= 1 ? 1: input.value
+            window.fps = Number(input.value)
+        })
     })
 }
 
