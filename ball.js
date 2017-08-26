@@ -7,7 +7,7 @@ const Ball = function () {
     let o = {
         image: image,
         x: 140,
-        y: 235,
+        y: 231,
         speedX: 5,
         speedY: 5,
         fired: false,

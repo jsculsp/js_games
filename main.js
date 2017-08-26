@@ -8,13 +8,7 @@ const __main = function () {
     let paddle = Paddle()
     let ball = Ball()
 
-    let blocks = []
-    for (let i = 0; i < 3; i++) {
-        let b = Block()
-        b.x = i * 150
-        b.y = 50
-        blocks.push(b)
-    }
+    let blocks = loadLevel(3)
 
     game.registerAction('a', function () {
         paddle.moveLeft()
@@ -26,8 +20,13 @@ const __main = function () {
         ball.fire()
     })
     window.addEventListener('keypress', function (event) {
-        if (event.key === 'p') {
+        let k = event.key
+        if (k === 'p') {
             ball.pause()
+        } else if (k === '1') {
+            blocks = loadLevel(1)
+        } else if ('123456789'.includes(k)) {
+            blocks = loadLevel(parseInt(k))
         }
     })
 

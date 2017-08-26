@@ -16,3 +16,19 @@ const imageFromPath = function (path) {
     img.src = path
     return img
 }
+
+const loadLevel = function (n) {
+    n -= 1
+    let level = levels[n]
+    let blocks = []
+    for (let i = 0; i < level.length; i++) {
+        let p = level[i]
+        let b = Block(p)
+        blocks.push(b)
+    }
+    return blocks
+}
+
+const choice = function (arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
+}
