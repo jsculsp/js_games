@@ -35,6 +35,9 @@ let Scene = function (game) {
         game.context.fillText(`分数：${score}`, 10, 290)
     } 
     s.update = function () {
+        if (window.paused) {
+            return
+        }
         ball.move()
         // 判断 paddle 和 ball 相撞
         if (paddle.collide(ball)) {

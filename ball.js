@@ -30,15 +30,9 @@ const Ball = function (game) {
             o.y += o.speedY
         }
     }
-<<<<<<< HEAD
     o.hasPoint = function (x, y) {
         let xIn = x >= o.x && x <= o.x + o.w
         let yIn = y >= o.y && y <= o.y + o.h
-=======
-    o.hasPoint = function(x, y) {
-        var xIn = x >= o.x && x <= o.x + o.w
-        var yIn = y >= o.y && y <= o.y + o.h
->>>>>>> 5bef3cbb0707fe984ff4ba6da85bd8706b313a70
         return xIn && yIn
     }
     return o
