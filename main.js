@@ -96,6 +96,26 @@ const __main = function () {
                 }
             }
         }
+        // mouse event
+        let enableDrag = false
+        game.canvas.addEventListener('mousedown', function (event) {
+            let x = event.offsetX
+            let y = event.offsetY
+            if (ball.hasPoint(x, y)) {
+                enableDrag = true
+            }
+        })
+        game.canvas.addEventListener('mousemove', function (event) {
+            let x = event.offsetX
+            let y = event.offsetY
+            if (enableDrag) {
+                ball.x = x
+                ball.y = y
+            }
+        })
+        game.canvas.addEventListener('mouseup', function (event) {
+            enableDrag = false
+        })
         game.draw = function () {
             // draw
             this.drawImage(paddle)
