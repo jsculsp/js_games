@@ -55,7 +55,7 @@ const __main = function () {
         ball: 'img/ball.png',
         paddle: 'img/paddle.png',
     }
-    let game = new BallGame(60, images, function (g) {
+    let game = BallGame.instance(60, images, function (g) {
         let s = new SceneTitle(g)
         g.runWithScene(s)
     })

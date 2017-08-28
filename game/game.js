@@ -25,6 +25,11 @@ class BallGame {
         this.init()
     }
 
+    static instance(...args) {
+        this.i = this.i || new this(...args)
+        return this.i
+    }
+
     update() {
         this.scene.update()
     }
