@@ -21,7 +21,6 @@ class Scene extends BaseScene {
         // mouse event
         let enableDrag = false
         this.game.canvas.addEventListener('mousedown', (event) => {
-            log('this: ', this)
             let x = event.offsetX
             let y = event.offsetY
             // 检查是否点中了 ball
@@ -39,7 +38,7 @@ class Scene extends BaseScene {
             }
         })
         this.game.canvas.addEventListener('mouseup', () => {
-                enableDrag = false
+            enableDrag = false
         })
     }
 
