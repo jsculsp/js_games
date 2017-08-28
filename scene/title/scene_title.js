@@ -12,6 +12,7 @@ class SceneTitle extends BaseScene {
             }
         })
     }
+
     draw() {
         // draw labels
         this.game.context.fillText('按 k 开始游戏', 160, 150)

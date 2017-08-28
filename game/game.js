@@ -2,84 +2,68 @@
  * Created by linmu on 2017/8/25.
  */
 
-const BallGame = function (fps, images, runCallback) {
-    // images 参数是一个对象，里面是图片的引用名字和图片路径。程序会在所有图片载入成功之后再运行
-    let canvas = document.querySelector('#id-canvas')
-    canvas.style['background'] = 'url(img/background.jpg) no-repeat'
-    canvas.style['background-size'] = 'cover'
-    let context = canvas.getContext('2d')
-    let g = {
-        scene: undefined,
-        canvas: canvas,
-        context: context,
-        actions: {},
-        keydowns: {},
-        images: {},
-    }
-    // draw
-    g.drawImage = function (imgObject) {
-        this.context.drawImage(imgObject.image, imgObject.x, imgObject.y)
-    }
-    // events
-    window.addEventListener('keydown', function (event) {
-        g.keydowns[event.key] = true
-    })
-    window.addEventListener('keyup', function (event) {
-        g.keydowns[event.key] = false
-    })
-    // update
-    g.update = function () {
-        g.scene.update()
-    }
-    // draw
-    g.draw = function () {
-        g.scene.draw()
-    }
-    // register actions
-    g.registerAction = function (key, callback) {
-        g.actions[key] = callback
+class BallGame {
+    constructor(fps, images, runCallback) {
+        window.fps = fps
+        this.images = images
+        this.runCallback = runCallback
+        //
+        this.scene = undefined
+        this.actions = {}
+        this.keydowns = {}
+        this.canvas = document.querySelector('#id-canvas')
+        this.canvas.style['background'] = 'url(img/background.jpg) no-repeat'
+        this.canvas.style['background-size'] = 'cover'
+        this.context = this.canvas.getContext('2d')
+        // events
+        window.addEventListener('keydown', (event) => {
+            this.keydowns[event.key] = true
+        })
+        window.addEventListener('keyup', (event) => {
+            this.keydowns[event.key] = false
+        })
+        this.init()
     }
 
-    window.fps = fps
-    const runloop = function () {
+    update() {
+        this.scene.update()
+    }
+
+    // draw
+    draw() {
+        this.scene.draw()
+    }
+
+    // register actions
+    registerAction(key, callback) {
+        this.actions[key] = callback
+    }
+
+    runloop() {
         // events
-        let actions = Object.keys(g.actions)
+        let actions = Object.keys(this.actions)
         for (let i = 0; i < actions.length; i++) {
             let key = actions[i]
-            if (g.keydowns[key]) {
+            if (this.keydowns[key]) {
                 // 如果按键被按下，调用注册的 action
-                g.actions[key]()
+                this.actions[key]()
             }
         }
         // update
-        g.update()
+        this.update()
         // clear
-        g.context.clearRect(0, 0, canvas.width, canvas.height)
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         // draw
-        g.draw()
-        setTimeout(arguments.callee, 1000 / window.fps)
+        this.draw()
+        setTimeout(this.runloop.bind(this), 1000 / window.fps)
     }
 
-    //
-    let loads = []
-    // 预先载入所有图片
-    let names = Object.keys(images)
-    for (let i = 0; i < names.length; i++) {
-        let name = names[i]
-        let path = images[name]
-        let img = new Image()
-        img.src = path
-        img.onload = function () {
-            // 存入 g.images 中
-            g.images[name] = img
-            // 所有图片都载入成功之后，调用 run
-            loads.push(1)
-            if (loads.length === names.length) {
-                g.__start()
-            }
-        }
+    // draw imgObject
+    drawImage(imgObject) {
+        this.context.drawImage(imgObject.image, imgObject.x, imgObject.y)
     }
-    g.imageByName = function (name) {
+
+    imageByName(name) {
         let img = this.images[name]
         let image = {
             w: img.width,
@@ -88,16 +72,40 @@ const BallGame = function (fps, images, runCallback) {
         }
         return image
     }
-    g.runWithScene = function (scene) {
-        g.scene = scene
+
+    // 初始化
+    init() {
+        let loads = []
+        // 预先载入所有图片
+        let names = Object.keys(this.images)
+        for (let i = 0; i < names.length; i++) {
+        let name = names[i]
+        let path = this.images[name]
+        let img = new Image()
+        img.src = path
+        img.onload = () => {
+            // 存入 g.images 中
+            this.images[name] = img
+            // 所有图片都载入成功之后，调用 run
+            loads.push(1)
+            if (loads.length === names.length) {
+                this.__start()
+            }
+        }
+    }
+    }
+
+    runWithScene(scene) {
+        this.scene = scene
         // 开始运行程序
-        setTimeout(runloop, 1000 / fps)
+        setTimeout(this.runloop.bind(this), 1000 / fps)
     }
-    g.replaceScene = function (scene) {
-        g.scene = scene
+
+    replaceScene(scene) {
+        this.scene = scene
     }
-    g.__start = function () {
-        runCallback(g)
+
+    __start() {
+        this.runCallback(this)
     }
-    return g
 }

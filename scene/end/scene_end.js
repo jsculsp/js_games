@@ -12,6 +12,7 @@ class SceneEnd extends BaseScene {
             }
         })
     }
+
     draw() {
         // draw labels
         this.game.context.fillText('游戏结束，按 r 重新开始游戏', 140, 160)
