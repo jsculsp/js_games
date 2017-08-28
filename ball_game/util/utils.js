@@ -32,3 +32,18 @@ const loadLevel = function (game, n) {
 const choice = function (arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 }
+
+const blockByArray = function (game, array) {
+    let b = Block(game, array)
+    return b
+}
+
+const blocksByArrays = function (game, arrays) {
+    let blocks = []
+    for (let i = 0; i < arrays.length; i++) {
+        let p = arrays[i]
+        let b = Block(game, p)
+        blocks.push(b)
+    }
+    return blocks
+}

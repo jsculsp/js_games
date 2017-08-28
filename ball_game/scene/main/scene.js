@@ -5,7 +5,13 @@ class Scene extends BaseScene {
         this.paddle = Paddle(game)
         this.ball = Ball(game)
         this.score = 0
-        blocks = loadLevel(game, 3)
+        let arraysJson = localStorage.getItem('arrays')
+        if (arraysJson) {
+            let arrays = JSON.parse(arraysJson)
+            blocks = blocksByArrays(game, arrays)
+        } else {
+            blocks = loadLevel(game, 3)
+        }
 
         // key event
         this.game.registerAction('a', () => {
