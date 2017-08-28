@@ -75,7 +75,7 @@ const BallGame = function (fps, images, runCallback) {
             // 所有图片都载入成功之后，调用 run
             loads.push(1)
             if (loads.length === names.length) {
-                g.run()
+                g.__start()
             }
         }
     }
@@ -93,7 +93,10 @@ const BallGame = function (fps, images, runCallback) {
         // 开始运行程序
         setTimeout(runloop, 1000 / fps)
     }
-    g.run = function () {
+    g.replaceScene = function (scene) {
+        g.scene = scene
+    }
+    g.__start = function () {
         runCallback(g)
     }
     return g
