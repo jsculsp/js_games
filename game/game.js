@@ -5,7 +5,7 @@
 const BallGame = function (fps, images, runCallback) {
     // images 参数是一个对象，里面是图片的引用名字和图片路径。程序会在所有图片载入成功之后再运行
     let canvas = document.querySelector('#id-canvas')
-    canvas.style['background'] = 'url(pictures/background.jpg) no-repeat'
+    canvas.style['background'] = 'url(img/background.jpg) no-repeat'
     canvas.style['background-size'] = 'cover'
     let context = canvas.getContext('2d')
     let g = {

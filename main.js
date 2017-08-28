@@ -56,7 +56,7 @@ const __main = function () {
         paddle: 'img/paddle.png',
     }
     let game = BallGame(60, images, function (g) {
-        let s = Scene(g)
+        let s = new SceneTitle(g)
         g.runWithScene(s)
     })
     enableDebugMode(game, true)

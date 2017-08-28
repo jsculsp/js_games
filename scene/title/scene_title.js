@@ -2,13 +2,13 @@
  * Created by linmu on 2017/8/28.
  */
 
-class SceneEnd extends BaseScene {
+class SceneTitle extends BaseScene {
     constructor(game) {
         super(game)
         document.addEventListener('keypress', function(event){
             let key = event.key
-            if (key === 'r') {
-                if (Object.getPrototypeOf(game.scene) === SceneEnd.prototype) {
+            if (key === 'k') {
+                if (Object.getPrototypeOf(game.scene) === SceneTitle.prototype) {
                     let s = Scene(game)
                     game.replaceScene(s)
                 }
@@ -17,6 +17,6 @@ class SceneEnd extends BaseScene {
     }
     draw() {
         // draw labels
-        this.game.context.fillText('游戏结束，按 r 重新开始游戏', 140, 160)
+        this.game.context.fillText('按 k 开始游戏', 160, 150)
     }
 }

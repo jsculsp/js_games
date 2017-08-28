@@ -42,7 +42,7 @@ let Scene = function (game) {
         // 判断游戏结束
         if (ball.y > paddle.y) {
             // 跳转到游戏结束的场景
-            let end = SceneEnd(game)
+            let end = new SceneEnd(game)
             game.replaceScene(end)
         }
         // 判断 paddle 和 ball 相撞
