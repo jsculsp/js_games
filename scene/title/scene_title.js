@@ -5,13 +5,10 @@
 class SceneTitle extends BaseScene {
     constructor(game) {
         super(game)
-        document.addEventListener('keypress', function(event){
-            let key = event.key
-            if (key === 'k') {
-                if (Object.getPrototypeOf(game.scene) === SceneTitle.prototype) {
-                    let s = Scene(game)
-                    game.replaceScene(s)
-                }
+        game.registerAction('k', function(){
+            if (Object.getPrototypeOf(game.scene) === SceneTitle.prototype) {
+                let s = Scene(game)
+                game.replaceScene(s)
             }
         })
     }

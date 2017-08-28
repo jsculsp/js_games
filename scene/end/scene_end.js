@@ -5,13 +5,10 @@
 class SceneEnd extends BaseScene {
     constructor(game) {
         super(game)
-        document.addEventListener('keypress', function(event){
-            let key = event.key
-            if (key === 'r') {
-                if (Object.getPrototypeOf(game.scene) === SceneEnd.prototype) {
-                    let s = Scene(game)
-                    game.replaceScene(s)
-                }
+        game.registerAction('r', function(){
+            if (Object.getPrototypeOf(game.scene) === SceneEnd.prototype) {
+                let s = Scene(game)
+                game.replaceScene(s)
             }
         })
     }
