@@ -6,7 +6,7 @@ let Scene = function (game) {
     let paddle = Paddle(game)
     let ball = Ball(game)
     let score = 0
-    let blocks = loadLevel(game, 3)
+    blocks = loadLevel(game, 3)
 
     game.registerAction('a', function () {
         paddle.moveLeft()

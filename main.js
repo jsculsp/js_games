@@ -55,21 +55,11 @@ const __main = function () {
         ball: 'pictures/ball.png',
         paddle: 'pictures/paddle.png',
     }
-    BallGame(60, images, function (g) {
-        let game = g
-        let scene = Scene(g)
-
-        game.update = function () {
-            // s.update
-            scene.update()
-        }
-
-        game.draw = function () {
-            // s.draw
-            scene.draw()
-        }
-        enableDebugMode(game, true)
+    let game = BallGame(60, images, function (g) {
+        let s = Scene(g)
+        g.runWithScene(s)
     })
+    enableDebugMode(game, true)
 }
 
 __main()

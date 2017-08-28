@@ -9,6 +9,7 @@ const BallGame = function (fps, images, runCallback) {
     canvas.style['background-size'] = 'cover'
     let context = canvas.getContext('2d')
     let g = {
+        scene: undefined,
         canvas: canvas,
         context: context,
         actions: {},
@@ -26,7 +27,14 @@ const BallGame = function (fps, images, runCallback) {
     window.addEventListener('keyup', function (event) {
         g.keydowns[event.key] = false
     })
-
+    // update
+    g.update = function () {
+        g.scene.update()
+    }
+    // draw
+    g.draw = function () {
+        g.scene.draw()
+    }
     // register actions
     g.registerAction = function (key, callback) {
         g.actions[key] = callback
@@ -80,10 +88,13 @@ const BallGame = function (fps, images, runCallback) {
         }
         return image
     }
-    g.run = function () {
-        runCallback(this)
+    g.runWithScene = function (scene) {
+        g.scene = scene
         // 开始运行程序
         setTimeout(runloop, 1000 / fps)
+    }
+    g.run = function () {
+        runCallback(g)
     }
     return g
 }
