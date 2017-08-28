@@ -5,9 +5,15 @@
 class SceneTitle extends BaseScene {
     constructor(game) {
         super(game)
-        game.registerAction('k', function(){
-            if (Object.getPrototypeOf(game.scene) === SceneTitle.prototype) {
-                let s = Scene(game)
+        game.registerAction('k', () => {
+            if (Object.getPrototypeOf(game.scene) === Object.getPrototypeOf(this)) {
+                let s = new Scene(game)
+                game.replaceScene(s)
+            }
+        })
+        game.registerAction('e', () => {
+            if (Object.getPrototypeOf(game.scene) === Object.getPrototypeOf(this)) {
+                let s = new SceneEdit(game)
                 game.replaceScene(s)
             }
         })
@@ -16,5 +22,6 @@ class SceneTitle extends BaseScene {
     draw() {
         // draw labels
         this.game.context.fillText('按 k 开始游戏', 160, 150)
+        this.game.context.fillText('按 e 编辑关卡', 160, 180)
     }
 }

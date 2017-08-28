@@ -5,9 +5,9 @@
 class SceneEnd extends BaseScene {
     constructor(game) {
         super(game)
-        game.registerAction('r', function(){
-            if (Object.getPrototypeOf(game.scene) === SceneEnd.prototype) {
-                let s = Scene(game)
+        game.registerAction('r', () => {
+            if (Object.getPrototypeOf(game.scene) === Object.getPrototypeOf(this)) {
+                let s = new Scene(game)
                 game.replaceScene(s)
             }
         })
