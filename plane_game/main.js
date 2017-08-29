@@ -7,7 +7,7 @@ const __main = function () {
         cloud0: 'img/cloud0.png',
         cloud1: 'img/cloud1.png',
         player: 'img/player.png',
-        bullet: 'img/bullet1.png',
+        bullet: 'img/bullet0.png',
         enemy0: 'img/enemy0.png',
         enemy1: 'img/enemy1.png',
         enemy2: 'img/enemy2.png',

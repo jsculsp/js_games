@@ -18,7 +18,7 @@ class Player extends BaseImg{
     fire() {
         if (this.cooldown === 0) {
             this.cooldown = config.fire_cooldown
-            let x = this.x + this.w / 2
+            let x = this.x + this.w / 2 - 50
             let y = this.y
             let b = Bullet.new(this.game)
             b.x = x
