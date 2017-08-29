@@ -8,9 +8,9 @@ class Scene extends BaseScene {
         this.bg = BaseImg.new(this.game, 'sky')
         this.cloud = Cloud.new(this.game, 'cloud')
         this.player = Player.new(this.game, 'player')
-        this.elements.push(this.bg)
-        this.elements.push(this.cloud)
-        this.elements.push(this.player)
+        this.__addElement(this.bg)
+        this.__addElement(this.cloud)
+        this.__addElement(this.player)
 
         // key event
         this.game.registerAction('a', () => {
@@ -25,6 +25,10 @@ class Scene extends BaseScene {
         this.game.registerAction('s', () => {
             this.player.moveDown()
         })
+    }
+
+    __addElement(element) {
+        this.elements.push(element)
     }
 
     update() {
