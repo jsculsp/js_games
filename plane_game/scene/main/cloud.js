@@ -17,6 +17,7 @@ class Cloud extends BaseImg{
     }
 
     update() {
+        this.speed = config.cloud_speed
         this.y += this.speed
         if (this.y > 960) {
             this.setup()

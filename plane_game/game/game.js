@@ -4,7 +4,7 @@
 
 class PlaneGame {
     constructor(fps, images, runCallback) {
-        window.fps = fps
+        config.fps = fps
         this.images = images
         this.runCallback = runCallback
         //
@@ -58,7 +58,7 @@ class PlaneGame {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         // draw
         this.draw()
-        setTimeout(this.runloop.bind(this), 1000 / window.fps)
+        setTimeout(this.runloop.bind(this), 1000 / config.fps)
     }
 
     // draw imgObject
@@ -96,7 +96,7 @@ class PlaneGame {
     runWithScene(scene) {
         this.scene = scene
         // 开始运行程序
-        setTimeout(this.runloop.bind(this), 1000 / fps)
+        setTimeout(this.runloop.bind(this), 1000 / config.fps)
     }
 
     replaceScene(scene) {

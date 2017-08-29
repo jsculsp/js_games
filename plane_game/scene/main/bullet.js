@@ -9,10 +9,11 @@ class Bullet extends BaseImg {
     }
 
     setup() {
-        this.speed = 1
+        this.speed = 3
     }
 
     update() {
+        this.speed = config.bullet_speed
         this.y -= this.speed
     }
 }

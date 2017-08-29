@@ -17,6 +17,7 @@ class Enemy extends BaseImg{
     }
 
     update() {
+        this.speed = config.enemy_speed
         this.y += this.speed
         if (this.y > 600) {
             this.setup()
