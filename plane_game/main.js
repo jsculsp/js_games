@@ -14,6 +14,7 @@ const __main = function () {
         enemy3: 'img/enemy3.png',
         enemy4: 'img/enemy4.png',
         enemy5: 'img/enemy5.png',
+        partical: 'img/partical0.png',
     }
     PlaneGame.instance(60, images, function (g) {
         let s = new SceneTitle(g)
