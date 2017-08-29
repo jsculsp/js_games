@@ -2,7 +2,7 @@
  * Created by linmu on 2017/8/29.
  */
 
-class Partical extends BaseImg {
+class Particle extends BaseImg {
     constructor(game) {
         super(game, 'partical')
         this.setup()
@@ -16,7 +16,7 @@ class Partical extends BaseImg {
         this.x = x
         this.y = y
         this.vx = vx
-        this.vy = vx
+        this.vy = vy
     }
 
     update() {
