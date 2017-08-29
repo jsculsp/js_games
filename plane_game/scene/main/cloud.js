@@ -3,8 +3,8 @@
  */
 
 class Cloud extends BaseImg{
-    constructor(game, img) {
-        super(game, img)
+    constructor(game) {
+        super(game, 'cloud')
         this.__setup()
     }
 

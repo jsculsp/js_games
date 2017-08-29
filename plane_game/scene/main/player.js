@@ -3,8 +3,8 @@
  */
 
 class Player extends BaseImg{
-    constructor(game, img) {
-        super(game, img)
+    constructor(game) {
+        super(game, 'player')
         this.__setup()
     }
 

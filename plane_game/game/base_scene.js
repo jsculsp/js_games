@@ -13,13 +13,15 @@ class BaseScene {
     }
 
     draw() {
-        for (let i of this.elements) {
-            this.game.drawImage(i)
+        for (let e of this.elements) {
+            this.game.drawImage(e)
         }
     }
 
     update() {
-
+        for (let e of this.elements) {
+            e.update()
+        }
     }
 
     __addElement(element) {

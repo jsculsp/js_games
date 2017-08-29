@@ -33,6 +33,11 @@ const choice = function (arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 }
 
+const randomBetween = function (end, start=0) {
+    // 包括 start，不包括 end
+    return Math.floor(Math.random() * (end - start)) + start
+}
+
 const blockByArray = function (game, array) {
     let b = Block(game, array)
     return b
