@@ -25,8 +25,8 @@ class BallGame {
         this.init()
     }
 
-    static instance() {
-        this.i = this.i || new this()
+    static instance(...args) {
+        this.i = this.i || new this(...args)
         return this.i
     }
 
