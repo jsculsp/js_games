@@ -1,18 +1,28 @@
 class Scene extends BaseScene {
     constructor(game) {
         super(game)
-        this.game = game
-        this.paddle = Paddle(game)
-        this.ball = Ball(game)
+        this.__setup()
+        this.__setBlocks()
+        this.__bindEvents()
+    }
+
+    __setup() {
+        this.paddle = Paddle(this.game)
+        this.ball = Ball(this.game)
         this.score = 0
+    }
+
+    __setBlocks() {
         let arraysJson = localStorage.getItem('arrays')
         if (arraysJson) {
             let arrays = JSON.parse(arraysJson)
-            blocks = blocksByArrays(game, arrays)
+            blocks = blocksByArrays(this.game, arrays)
         } else {
-            blocks = loadLevel(game, 3)
+            blocks = loadLevel(this.game, 3)
         }
+    }
 
+    __bindEvents() {
         // key event
         this.game.registerAction('a', () => {
             this.paddle.moveLeft()
