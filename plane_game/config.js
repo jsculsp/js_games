@@ -8,4 +8,5 @@ const config = {
     cloud_speed: 1,
     enemy_speed: 5,
     bullet_speed: 10,
+    fire_cooldown: 5,
 }

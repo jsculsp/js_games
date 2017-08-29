@@ -12,12 +12,12 @@ class Player extends BaseImg{
         this.x = 300
         this.y = 700
         this.speed = 5
-        this.cooldown = 0
+        this.cooldown = 5
     }
 
     fire() {
         if (this.cooldown === 0) {
-            this.cooldown = 5
+            this.cooldown = config.fire_cooldown
             let x = this.x + this.w / 2
             let y = this.y
             let b = Bullet.new(this.game)
