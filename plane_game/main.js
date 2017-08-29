@@ -16,7 +16,7 @@ const __main = function () {
         enemy5: 'img/enemy5.png',
     }
     PlaneGame.instance(60, images, function (g) {
-        let s = new Scene(g)
+        let s = new SceneTitle(g)
         g.runWithScene(s)
     })
 }

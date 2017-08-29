@@ -17,7 +17,7 @@ class BaseImg {
     }
 
     draw() {
-
+        this.game.drawImage(this)
     }
 
     update() {
