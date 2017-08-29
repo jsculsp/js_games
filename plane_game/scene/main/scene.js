@@ -27,10 +27,6 @@ class Scene extends BaseScene {
         })
     }
 
-    __addElement(element) {
-        this.elements.push(element)
-    }
-
     update() {
         this.cloud.y += this.cloud.speed
     }

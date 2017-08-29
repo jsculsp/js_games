@@ -21,4 +21,8 @@ class BaseScene {
     update() {
 
     }
+
+    __addElement(element) {
+        this.elements.push(element)
+    }
 }
