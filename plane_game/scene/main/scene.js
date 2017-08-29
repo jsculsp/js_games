@@ -2,7 +2,6 @@ class Scene extends BaseScene {
     constructor(game) {
         super(game)
         this.__setup()
-        this.__bindEvents()
     }
 
     __setup() {
@@ -12,9 +11,7 @@ class Scene extends BaseScene {
         this.elements.push(this.bg)
         this.elements.push(this.cloud)
         this.elements.push(this.player)
-    }
 
-    __bindEvents() {
         // key event
         this.game.registerAction('a', () => {
             this.player.moveLeft()

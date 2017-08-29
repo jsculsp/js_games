@@ -13,6 +13,13 @@ class PlaneGame {
         this.keydowns = {}
         this.canvas = document.querySelector('#id-canvas')
         this.context = this.canvas.getContext('2d')
+        // events
+        window.addEventListener('keydown', (event) => {
+            this.keydowns[event.key] = true
+        })
+        window.addEventListener('keyup', (event) => {
+            this.keydowns[event.key] = false
+        })
         this.init()
     }
 

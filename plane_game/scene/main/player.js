@@ -35,6 +35,7 @@ class Player extends BaseImg{
     moveLeft() {
         this.__moveToX(this.x - this.speed)
     }
+
     moveRight() {
         this.__moveToX(this.x + this.speed)
     }
@@ -42,6 +43,7 @@ class Player extends BaseImg{
     moveUp() {
         this.__moveToY(this.y - this.speed)
     }
+
     moveDown() {
         this.__moveToY(this.y + this.speed)
     }
