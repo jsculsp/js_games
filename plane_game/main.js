@@ -30,7 +30,7 @@ let enableDebugMode = function (game, enable) {
 
 const __main = function () {
     let images = {
-        sky: 'img/sky2.png',
+        sky: 'img/sky0.png',
         cloud0: 'img/cloud0.png',
         cloud1: 'img/cloud1.png',
         player: 'img/player.png',

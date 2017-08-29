@@ -5,10 +5,19 @@
 class Player extends BaseImg{
     constructor(game) {
         super(game, 'player')
-        this.__setup()
+        this.setup()
     }
 
-    __setup() {
+    fire() {
+        let x = this.x + this.w / 2
+        let y = this.y
+        let b = Bullet.new(this.game)
+        b.x = x
+        b.y = y
+        this.scene.__addElement(b)
+    }
+
+    setup() {
         this.x = 300
         this.y = 700
         this.speed = 5

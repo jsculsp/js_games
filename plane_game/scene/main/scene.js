@@ -1,11 +1,11 @@
 class Scene extends BaseScene {
     constructor(game) {
         super(game)
-        this.__setup()
-        this.__setupInputs()
+        this.setup()
+        this.setupInputs()
     }
 
-    __setup() {
+    setup() {
         this.numberOfEnemies = 10
         this.numberOfClouds = 3
         this.bg = BaseImg.new(this.game, 'sky')
@@ -16,7 +16,7 @@ class Scene extends BaseScene {
         this.__addEnemies()
     }
 
-    __setupInputs() {
+    setupInputs() {
         let g = this.game
         let s = this
         // key event
@@ -31,6 +31,9 @@ class Scene extends BaseScene {
         })
         g.registerAction('s', () => {
             s.player.moveDown()
+        })
+        g.registerAction('j', () => {
+            s.player.fire()
         })
     }
 

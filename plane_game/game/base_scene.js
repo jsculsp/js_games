@@ -25,6 +25,7 @@ class BaseScene {
     }
 
     __addElement(element) {
+        element.scene = this
         this.elements.push(element)
     }
 }

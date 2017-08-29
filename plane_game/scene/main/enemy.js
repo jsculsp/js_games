@@ -7,10 +7,10 @@ class Enemy extends BaseImg{
         let type = randomBetween(5)
         let name = `enemy${type}`
         super(game, name)
-        this.__setup()
+        this.setup()
     }
 
-    __setup() {
+    setup() {
         this.speed = randomBetween(2, 5)
         this.x = randomBetween(600)
         this.y = -randomBetween(0, 200)
@@ -19,7 +19,7 @@ class Enemy extends BaseImg{
     update() {
         this.y += this.speed
         if (this.y > 600) {
-            this.__setup()
+            this.setup()
         }
     }
 }
