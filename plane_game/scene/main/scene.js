@@ -7,12 +7,12 @@ class Scene extends BaseScene {
 
     __setup() {
         this.numberOfEnemies = 10
+        this.numberOfClouds = 3
         this.bg = BaseImg.new(this.game, 'sky')
-        this.cloud = Cloud.new(this.game)
         this.player = Player.new(this.game)
         this.__addElement(this.bg)
-        this.__addElement(this.cloud)
         this.__addElement(this.player)
+        this.__addClouds()
         this.__addEnemies()
     }
 
@@ -44,11 +44,13 @@ class Scene extends BaseScene {
         this.enemies = es
     }
 
-    update() {
-        super.update()
-        this.cloud.y += this.cloud.speed
-        if (this.cloud.y > 960) {
-            this.cloud.y = 0
+    __addClouds() {
+        let cs = []
+        for (let i = 0; i < this.numberOfClouds; i++) {
+            let c = Cloud.new(this.game)
+            cs.push(c)
+            this.__addElement(c)
         }
+        this.clouds = cs
     }
 }
