@@ -21,6 +21,8 @@ class BaseAnimation {
         this.imagesToAnimations(this.animationName, this.picNum)
         this.x = 0
         this.y = 0
+        this.frameIndex = 0
+        this.frameCount = 5
         this.texture = this.frames()[0]
         this.w = this.texture.width
         this.h = this.texture.height

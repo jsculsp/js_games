@@ -8,11 +8,12 @@ class BirdAnimation extends BaseAnimation{
         super.setup()
         this.x = 100
         this.y = 400
-        this.frameIndex = 0
-        this.frameCount = 5
+        this.flipX = false
         // 重力和加速度
         this.gy = 10
         this.vy = 0
+        // 旋转角度
+        this.rotation = 0
     }
 
     update() {
@@ -20,29 +21,45 @@ class BirdAnimation extends BaseAnimation{
         // 更新受力
         this.y += this.vy
         this.vy += this.gy * 0.1
-        let h = 825
+        let h = 800
         if (this.y > h) {
             this.y = h
         }
+        // 更新角度
+        if (this.rotation < 45) {
+            log(this.rotation)
+            this.rotation += 5
+        }    
     }
-
+    
     draw() {
         let ctx = this.game.context
+        ctx.save()
+
+        let w2 = this.w / 2
+        let h2 = this.h / 2
+        ctx.translate(this.x + w2, this.y + h2)
         if (this.flipX) {
-            ctx.save()
-            let x = this.x + this.w / 2
-            ctx.translate(x, 0)
             ctx.scale(-1, 1)
-            ctx.translate(-x, 0)
-            // Draw the image
-            ctx.drawImage(this.texture, this.x, this.y)
-            ctx.restore()
-        } else {
-            ctx.drawImage(this.texture, this.x, this.y)
         }
+        ctx.rotate(this.rotation * Math.PI / 180)
+        ctx.translate(-w2, -h2)
+        // Draw the image
+        ctx.drawImage(this.texture, 0, 0, this.w * 2, this.h * 2)
+
+        ctx.restore()
     }
 
     jump() {
         this.vy = -10
+        this.rotation = -45
+    }
+
+    headLeft() {
+        this.flipX = true
+    }
+
+    headRight() {
+        this.flipX = false
     }
 }

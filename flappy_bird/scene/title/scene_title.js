@@ -27,5 +27,11 @@ class SceneTitle extends BaseScene {
         this.game.registerAction('j', () => {
             b.jump()
         })
+        this.game.registerAction('a', () => {
+            b.headLeft()
+        })
+        this.game.registerAction('d', () => {
+            b.headRight()
+        })
     }
 }
