@@ -20,6 +20,10 @@ class Bullet extends BaseImg {
         }
         // 判断击中敌机
         let enemies = this.game.scene.enemies
+        // 子弹击中敌机的同时玩家和敌机相撞会产生 bug，这样可以修复
+        if (!enemies) {
+            return
+        }
         for (let e of enemies) {
             if (firstInSecond(e, this) || firstInSecond(this, e)) {
                 // add particles
