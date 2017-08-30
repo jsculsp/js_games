@@ -17,23 +17,15 @@ class SceneTitle extends BaseScene {
         let field = Field.new(this.game, this)
         this.__addElement(field)
         // player
-        let a = BirdAnimation.new(this.game)
-        this.a = a
-        this.__addElement(a)
+        let b = BirdAnimation.new(this.game)
+        this.bird = b
+        this.__addElement(b)
     }
 
     setupInputs() {
-        this.game.registerAction('a', (keyStatus) => {
-            this.a.moveRight(2, keyStatus)
-        })
-        this.game.registerAction('d', (keyStatus) => {
-            this.a.moveLeft(2, keyStatus)
-        })
-        this.game.registerAction('j', (keyStatus) => {
-            this.a.doAction(keyStatus)
-        })
-        this.game.registerAction('k', (keyStatus) => {
-            this.a.doOppositeAction(keyStatus)
+        let b = this.bird
+        this.game.registerAction('j', () => {
+            b.jump()
         })
     }
 }

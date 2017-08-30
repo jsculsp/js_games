@@ -10,7 +10,20 @@ class BirdAnimation extends BaseAnimation{
         this.y = 400
         this.frameIndex = 0
         this.frameCount = 5
-        this.flipX = false
+        // 重力和加速度
+        this.gy = 10
+        this.vy = 0
+    }
+
+    update() {
+        super.update()
+        // 更新受力
+        this.y += this.vy
+        this.vy += this.gy * 0.1
+        let h = 825
+        if (this.y > h) {
+            this.y = h
+        }
     }
 
     draw() {
@@ -29,45 +42,7 @@ class BirdAnimation extends BaseAnimation{
         }
     }
 
-    moveLeft(x, keyStatus) {
-        this.flipX = false
-        this.x += x
-        let animationNames = {
-            down: 'left',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
-    }
-
-    moveRight(x, keyStatus) {
-        this.flipX = false
-        this.x -= x
-        let animationNames = {
-            down: 'right',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
-    }
-
-    doAction(keyStatus) {
-        this.flipX = false
-        let animationNames = {
-            down: 'action',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
-    }
-
-    doOppositeAction(keyStatus) {
-        this.flipX = true
-        let animationNames = {
-            down: 'action',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
+    jump() {
+        this.vy = -10
     }
 }
