@@ -8,7 +8,7 @@ class Pipes {
         for (let i = 0; i < this.columsOfPipe; i++) {
             let p1 = Pipe.new(game)
             p1.flipY = true
-            p1.x = 500 + i * (this.gap + p1.w)
+            p1.x = (2 + i) * (this.gap + p1.w)
             let p2 = Pipe.new(game)
             p2.x = p1.x
             this.resetPipesPosition(p1, p2)
@@ -56,7 +56,7 @@ class Pipes {
             let p2 = this.pipes[i+1]
             for (let p of [p1, p2]) {
                 p.x -= 5
-                if (p.x < -100) {
+                if (p.x < -p.w - this.gap) {
                     p.x += this.columsOfPipe * (p.w + this.gap)
                     this.resetPipesPosition(p1, p2)
                 }
