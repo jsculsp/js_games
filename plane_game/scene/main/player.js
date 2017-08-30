@@ -32,6 +32,14 @@ class Player extends BaseImg{
         if (this.cooldown > 0) {
             this.cooldown--
         }
+        // 判断和敌机相撞
+        let enemies = this.game.scene.enemies
+        for (let e of enemies) {
+            if (firstInSecond(e, this) || firstInSecond(this, e)) {
+                let s = new SceneEnd(this.game)
+                this.game.replaceScene(s)
+            }
+        }
     }
 
     __moveToX(x) {
