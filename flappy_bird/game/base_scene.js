@@ -20,6 +20,7 @@ class BaseScene {
 
     update() {
         for (let e of this.elements) {
+            e.debug && e.debug(true)
             e.update()
         }
     }

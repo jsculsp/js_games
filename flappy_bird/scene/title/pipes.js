@@ -8,7 +8,7 @@ class Pipes {
         for (let i = 0; i < this.columsOfPipe; i++) {
             let p1 = Pipe.new(game)
             p1.flipY = true
-            p1.x = 500 + i * this.gap
+            p1.x = 500 + i * (this.gap + p1.w)
             let p2 = Pipe.new(game)
             p2.x = p1.x
             this.resetPipesPosition(p1, p2)
@@ -19,6 +19,15 @@ class Pipes {
 
     static new(...args) {
         return new this(...args)
+    }
+
+    debug(bool) {
+        if (bool) {
+            // 2 根管子垂直方向的间距
+            this.pipeSpace = config.pip_space.value
+            // 管子横向间距
+            this.gap = config.gap.value
+        }
     }
 
     draw() {
@@ -42,10 +51,15 @@ class Pipes {
     }
 
     update() {
-        for (let p of this.pipes) {
-            p.x -= 5
-            if (p.x < -100) {
-                p.x += this.gap * this.columsOfPipe
+        for (let i = 0; i < this.pipes.length; i += 2) {
+            let p1 = this.pipes[i]
+            let p2 = this.pipes[i+1]
+            for (let p of [p1, p2]) {
+                p.x -= 5
+                if (p.x < -100) {
+                    p.x += this.columsOfPipe * (p.w + this.gap)
+                    this.resetPipesPosition(p1, p2)
+                }
             }
         }
     }

@@ -4,7 +4,7 @@
 
 class BirdGame {
     constructor(fps, images, runCallback) {
-        config.fps = fps
+        config.fps.value = fps
         this.images = images
         this.runCallback = runCallback
         this.setup()
@@ -68,7 +68,7 @@ class BirdGame {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         // draw
         this.draw()
-        setTimeout(this.runloop.bind(this), 1000 / config.fps)
+        setTimeout(this.runloop.bind(this), 1000 / config.fps.value)
     }
 
     drawImage(imgObject) {
@@ -104,7 +104,7 @@ class BirdGame {
     runWithScene(scene) {
         this.scene = scene
         // 开始运行程序
-        setTimeout(this.runloop.bind(this), 1000 / config.fps)
+        setTimeout(this.runloop.bind(this), 1000 / config.fps.value)
     }
 
     replaceScene(scene) {
