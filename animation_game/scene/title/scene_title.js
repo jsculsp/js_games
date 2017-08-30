@@ -23,5 +23,8 @@ class SceneTitle extends BaseScene {
         this.game.registerAction('j', (keyStatus) => {
             this.w.doAction(keyStatus)
         })
+        this.game.registerAction('k', (keyStatus) => {
+            this.w.doOppositeAction(keyStatus)
+        })
     }
 }
