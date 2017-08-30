@@ -3,8 +3,10 @@
  */
 
 class ParticleSystem {
-    constructor(game) {
+    constructor(game, x, y) {
         this.game = game
+        this.x = x
+        this.y = y
         this.setup()
     }
 
@@ -13,9 +15,7 @@ class ParticleSystem {
     }
 
     setup() {
-        this.duration = 50
-        this.x = 150
-        this.y = 200
+        this.duration = 30
         this.numberOfParticles = 30
         this.particles = []
     }
@@ -30,10 +30,7 @@ class ParticleSystem {
         // 过时则删除该粒子系统
         this.duration--
         if (this.duration < 0) {
-            let s = this.game.scene
-            let es = s.elements
-            let index = es.indexOf(this)
-            es.splice(index, 1)
+            this.removeFromScene()
         }
         // 添加小火花
         if (this.particles.length < this.numberOfParticles) {
@@ -51,5 +48,12 @@ class ParticleSystem {
         }
         // 删除死掉的小火花
         this.particles = this.particles.filter(p => p.life > 0)
+    }
+
+    removeFromScene() {
+        let s = this.game.scene
+        let es = s.elements
+        let index = es.indexOf(this)
+        es.splice(index, 1)
     }
 }

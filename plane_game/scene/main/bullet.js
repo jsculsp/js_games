@@ -16,10 +16,22 @@ class Bullet extends BaseImg {
         this.speed = config.bullet_speed
         this.y -= this.speed
         if (this.y < -100) {
-            let s = this.game.scene
-            let es = s.elements
-            let index = es.indexOf(this)
-            es.splice(index, 1)
+            this.removeFromScene()
+        }
+        // 判断击中敌机
+        let enemies = this.game.scene.enemies
+        for (let e of enemies) {
+            if (firstInSecond(e, this) || firstInSecond(this, e)) {
+                // add particles
+                let x = e.x + 0.5 * e.w
+                let y = e.y + 0.5 * e.h
+                let ps = ParticleSystem.new(this.game, x, y)
+                this.game.scene.__addElement(ps)
+                // reset this enemy
+                e.setup()
+                // remove bullet
+                this.removeFromScene()
+            }
         }
     }
 }

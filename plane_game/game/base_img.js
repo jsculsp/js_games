@@ -23,4 +23,11 @@ class BaseImg {
     update() {
 
     }
+
+    removeFromScene() {
+        let s = this.game.scene
+        let es = s.elements
+        let index = es.indexOf(this)
+        es.splice(index, 1)
+    }
 }
