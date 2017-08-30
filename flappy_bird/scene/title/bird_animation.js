@@ -6,7 +6,7 @@ class BirdAnimation extends BaseAnimation{
 
     setup() {
         super.setup()
-        this.x = 100
+        this.x = 200
         this.y = 400
         this.flipX = false
         // 重力和加速度
@@ -27,7 +27,6 @@ class BirdAnimation extends BaseAnimation{
         }
         // 更新角度
         if (this.rotation < 45) {
-            log(this.rotation)
             this.rotation += 5
         }    
     }
@@ -55,11 +54,19 @@ class BirdAnimation extends BaseAnimation{
         this.rotation = -45
     }
 
-    headLeft() {
+    headLeft(x) {
+        this.x -= x
+        if (this.x < 0) {
+            this.x = 0
+        }
         this.flipX = true
     }
 
-    headRight() {
+    headRight(x) {
+        this.x += x
+        if (this.x > 640 - this.w) {
+            this.x = 640 - this.w
+        }
         this.flipX = false
     }
 }
