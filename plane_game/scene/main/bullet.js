@@ -15,5 +15,11 @@ class Bullet extends BaseImg {
     update() {
         this.speed = config.bullet_speed
         this.y -= this.speed
+        if (this.y < -100) {
+            let s = this.game.scene
+            let es = s.elements
+            let index = es.indexOf(this)
+            es.splice(index, 1)
+        }
     }
 }
