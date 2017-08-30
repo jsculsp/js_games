@@ -26,7 +26,7 @@ const __main = function () {
     let right = genImages('right', 16)
     let images = Object.assign({}, stand, action, left, right)
 
-    PlaneGame.instance(60, images, function (g) {
+    AnimationGame.instance(60, images, function (g) {
         let s = new SceneTitle(g)
         g.runWithScene(s)
     })

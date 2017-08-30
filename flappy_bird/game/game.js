@@ -2,7 +2,7 @@
  * Created by linmu on 2017/8/25.
  */
 
-class AnimationGame {
+class BirdGame {
     constructor(fps, images, runCallback) {
         config.fps = fps
         this.images = images

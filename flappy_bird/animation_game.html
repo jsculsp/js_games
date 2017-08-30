@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>game 1</title>
+        <style media="screen">
+            canvas {
+                border: 1px black solid;
+                margin: 0 39%;
+            }
+        </style>
+        <!--配置文件-->
+        <script src="config.js"></script>
+        <!--工具文件-->
+        <script src="util/linmu.utils.js"></script>
+        <script src="util/utils.js"></script>
+        <!--game 相关文件-->
+        <script src="game/game.js"></script>
+        <script src="game/base_scene.js"></script>
+        <script src="game/base_img.js"></script>
+        <script src="game/base_label.js"></script>
+        <script src="game/base_animation.js"></script>
+        <!--场景-->
+        <script src="scene/title/scene_title.js"></script>
+    </head>
+    <body>
+        <canvas id="id-canvas" width="640" height="960"></canvas>
+        <hr>
+        <div>
+            <label for="id-input-frame-rate">
+                <input class="auto-slider" id="id-input-frame-rate"
+                       type="range"
+                       data-value="config.fps"
+                >
+                帧率：<span class="label"></span>
+            </label>
+        </div>
+        <div>
+            <label for="id-input-player-speed">
+                <input class="auto-slider" id="id-input-player-speed"
+                       type="range"
+                       data-value="config.player_speed"
+                >
+                玩家速度：<span class="label"></span>
+            </label>
+        </div>
+        <div>
+            <label for="id-input-bullet-speed">
+                <input class="auto-slider" id="id-input-bullet-speed"
+                       type="range"
+                       data-value="config.bullet_speed"
+                >
+                子弹速度：<span class="label"></span>
+            </label>
+        </div>
+        <div>
+            <label for="id-input-enemy-speed">
+                <input class="auto-slider" id="id-input-enemy-speed"
+                       type="range"
+                       data-value="config.enemy_speed"
+                >
+                敌机速度：<span class="label"></span>
+            </label>
+        </div>
+        <div>
+            <label for="id-input-cloud-speed">
+                <input class="auto-slider" id="id-input-cloud-speed" type="range"
+                       data-value="config.cloud_speed"
+                       min = "-10"
+                       max = "10"
+                >
+                云朵速度：<span class="label"></span>
+            </label>
+        </div>
+        <div>
+            <label for="id-input-fire-cooldown">
+                <input class="auto-slider" id="id-input-fire-cooldown"
+                       type="range"
+                       data-value="config.fire_cooldown"
+                >
+                子弹冷却时间：<span class="label"></span>
+            </label>
+        </div>
+        <script src="main.js"></script>
+        <script>
+            bindAll('.auto-slider', 'input', function (event) {
+                let target = event.target
+                let bindVar = target.dataset.value
+                let v = target.value
+                eval(`${bindVar} = ${v}`)
+                let label = target.closest('label').querySelector('span.label')
+                label.innerText = v
+            })
+        </script>
+    </body>
+</html>
