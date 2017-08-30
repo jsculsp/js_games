@@ -11,15 +11,15 @@ class Enemy extends BaseImg{
     }
 
     setup() {
-        this.speed = randomBetween(2, 5)
+        let s = config.enemy_speed || 1
+        this.speed = randomBetween(s, 2.5 * s)
         this.x = randomBetween(600)
         this.y = -randomBetween(0, 200)
     }
 
     update() {
-        this.speed = config.enemy_speed
         this.y += this.speed
-        if (this.y > 600) {
+        if (this.y > 960) {
             this.setup()
         }
     }

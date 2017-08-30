@@ -13,9 +13,6 @@ class SceneTitle extends BaseScene {
         this.bg = BaseImg.new(this.game, 'sky')
         let label = BaseLabel.new(this.game, '按 k 开始游戏')
         this.__addElement(label)
-
-        let ps = ParticleSystem.new(this.game)
-        this.__addElement(ps)
     }
 
     setupInputs() {

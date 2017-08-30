@@ -14,6 +14,9 @@ class Scene extends BaseScene {
         this.__addElement(this.player)
         this.__addClouds()
         this.__addEnemies()
+        // add particles
+        let ps = ParticleSystem.new(this.game)
+        this.__addElement(ps)
     }
 
     setupInputs() {

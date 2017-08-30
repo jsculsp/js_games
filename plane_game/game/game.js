@@ -7,12 +7,20 @@ class PlaneGame {
         config.fps = fps
         this.images = images
         this.runCallback = runCallback
-        //
+        this.setup()
+        this.setupInputs()
+        this.init()
+    }
+
+    setup() {
         this.scene = undefined
         this.actions = {}
         this.keydowns = {}
         this.canvas = document.querySelector('#id-canvas')
         this.context = this.canvas.getContext('2d')
+    }
+
+    setupInputs() {
         // events
         window.addEventListener('keydown', (event) => {
             this.keydowns[event.key] = true
@@ -20,7 +28,6 @@ class PlaneGame {
         window.addEventListener('keyup', (event) => {
             this.keydowns[event.key] = false
         })
-        this.init()
     }
 
     static instance(...args) {
@@ -32,12 +39,10 @@ class PlaneGame {
         this.scene.update()
     }
 
-    // draw
     draw() {
         this.scene.draw()
     }
 
-    // register actions
     registerAction(key, callback) {
         this.actions[key] = callback
     }
@@ -61,7 +66,6 @@ class PlaneGame {
         setTimeout(this.runloop.bind(this), 1000 / config.fps)
     }
 
-    // draw imgObject
     drawImage(imgObject) {
         this.context.drawImage(imgObject.texture, imgObject.x, imgObject.y)
     }
@@ -71,7 +75,6 @@ class PlaneGame {
         return img
     }
 
-    // 初始化
     init() {
         let loads = []
         // 预先载入所有图片

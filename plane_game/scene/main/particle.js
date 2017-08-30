@@ -4,12 +4,12 @@
 
 class Particle extends BaseImg {
     constructor(game) {
-        super(game, 'partical')
+        super(game, 'particle')
         this.setup()
     }
 
     setup() {
-        this.speed = 3
+        this.life = 20
     }
 
     init(x, y, vx, vy) {
@@ -20,7 +20,12 @@ class Particle extends BaseImg {
     }
 
     update() {
+        this.life--
         this.x += this.vx
         this.y += this.vy
+        // a 是加速度
+        let a = 0.01
+        this.vx += a * this.vx
+        this.vy += a * this.vy
     }
 }
