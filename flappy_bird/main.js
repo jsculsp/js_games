@@ -4,6 +4,7 @@
 const __main = function () {
     let images = {
         bg: 'img/bg.png',
+        pipe: 'img/pipe.png',
         ground: 'img/ground.png',
         bird1: 'img/bird1.png',
         bird2: 'img/bird2.png',

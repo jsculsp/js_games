@@ -25,8 +25,11 @@ class BirdAnimation extends BaseAnimation{
         if (this.y > h) {
             this.y = h
         }
+        if (this.y < this.h) {
+            this.y = this.h
+        }
         // 更新角度
-        if (this.rotation < 45) {
+        if (this.rotation < 90) {
             this.rotation += 5
         }    
     }

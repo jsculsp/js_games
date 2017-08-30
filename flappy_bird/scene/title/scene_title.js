@@ -13,6 +13,9 @@ class SceneTitle extends BaseScene {
         // 背景
         let bg = Bg.new(this.game)
         this.__addElement(bg)
+        // 管子
+        this.pipes = Pipes.new(this.game)
+        this.__addElement(this.pipes)
         // 地面
         let field = Field.new(this.game, this)
         this.__addElement(field)
