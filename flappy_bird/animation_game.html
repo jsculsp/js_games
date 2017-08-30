@@ -6,7 +6,6 @@
         <style media="screen">
             canvas {
                 border: 1px black solid;
-                margin: 0 39%;
             }
         </style>
         <!--配置文件-->
@@ -20,11 +19,17 @@
         <script src="game/base_img.js"></script>
         <script src="game/base_label.js"></script>
         <script src="game/base_animation.js"></script>
+        <!--场景素材-->
+        <script src="scene/title/bg.js"></script>
+        <script src="scene/title/field.js"></script>
+        <script src="scene/title/bird_animation.js"></script>
         <!--场景-->
         <script src="scene/title/scene_title.js"></script>
     </head>
     <body>
-        <canvas id="id-canvas" width="640" height="960"></canvas>
+        <div style="width: 1000px; margin: 0 auto; text-align: center">
+            <canvas id="id-canvas" width="640" height="960"></canvas>
+        </div>
         <hr>
         <div>
             <label for="id-input-frame-rate">

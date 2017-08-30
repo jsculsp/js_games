@@ -3,9 +3,10 @@
  */
 
 class BaseAnimation {
-    constructor(game) {
+    constructor(game, name, picNum) {
         this.game = game
-        // 为了省事，这里硬编码一套动画
+        this.animationName = name
+        this.picNum = picNum
         this.setup()
     }
 
@@ -15,16 +16,14 @@ class BaseAnimation {
 
     setup() {
         this.animations = {
-            bird: []
+            [this.animationName]: []
         }
-        this.imagesToAnimations('bird', 3)
-        this.animationName = 'bird'
+        this.imagesToAnimations(this.animationName, this.picNum)
+        this.x = 0
+        this.y = 0
         this.texture = this.frames()[0]
         this.w = this.texture.width
         this.h = this.texture.height
-        this.frameIndex = 0
-        this.frameCount = 5
-        this.flipX = false
     }
 
     frames() {
@@ -43,61 +42,7 @@ class BaseAnimation {
     }
 
     draw() {
-        let ctx = this.game.context
-        if (this.flipX) {
-            ctx.save()
-            let x = this.x + this.w / 2
-            ctx.translate(x, 0)
-            ctx.scale(-1, 1)
-            ctx.translate(-x, 0)
-            // Draw the image
-            ctx.drawImage(this.texture, this.x, this.y)
-            ctx.restore()
-        } else {
-            ctx.drawImage(this.texture, this.x, this.y)
-        }
-    }
-
-    moveLeft(x, keyStatus) {
-        this.flipX = false
-        this.x += x
-        let animationNames = {
-            down: 'left',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
-    }
-
-    moveRight(x, keyStatus) {
-        this.flipX = false
-        this.x -= x
-        let animationNames = {
-            down: 'right',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
-    }
-
-    doAction(keyStatus) {
-        this.flipX = false
-        let animationNames = {
-            down: 'action',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
-    }
-
-    doOppositeAction(keyStatus) {
-        this.flipX = true
-        let animationNames = {
-            down: 'action',
-            up: 'stand',
-        }
-        let name = animationNames[keyStatus]
-        this.changeAnimation(name)
+        this.game.drawImage(this)
     }
 
     changeAnimation(name) {
