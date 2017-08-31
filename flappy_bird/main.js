@@ -7,7 +7,8 @@ const templateControl = function (key, item) {
         <div>
             <label>
                 <input class="auto-slider" type="range"
-                       max="500"
+                       min="${item.min || 0}"
+                       max="${item.max || 100}"
                        value="${item.value}"
                        data-value="config.${key}"
                 >

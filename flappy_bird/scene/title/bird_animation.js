@@ -8,12 +8,19 @@ class BirdAnimation extends BaseAnimation{
         super.setup()
         this.x = 200
         this.y = 400
+        this.speed = 5
         this.flipX = false
         // 重力和加速度
         this.gy = 10
         this.vy = 0
         // 旋转角度
         this.rotation = 0
+    }
+
+    debug(bool) {
+        if (bool) {
+            this.speed = config.bird_speed.value
+        }
     }
 
     update() {

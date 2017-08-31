@@ -10,8 +10,8 @@ class Pipes {
 
     setup() {
         this.pipes = []
-        this.pipeSpace = 250
-        this.gap = 300
+        this.pipeSpace = 160
+        this.gap = 200
         this.columsOfPipe = 3
         this.__setPipes(this.gap, this.pipeSpace)
     }
