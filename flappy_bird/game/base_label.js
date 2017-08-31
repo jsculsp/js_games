@@ -3,9 +3,11 @@
  */
 
 class BaseLabel {
-    constructor(game, text) {
+    constructor(game, text, x, y) {
         this.game = game
         this.text = text
+        this.x = x
+        this.y = y
     }
 
     static new(...args) {
@@ -16,7 +18,7 @@ class BaseLabel {
         // draw labels
         let ctx = this.game.context
         ctx.font="40px Arial"
-        ctx.fillText(this.text, 220, 450)
+        ctx.fillText(this.text, this.x, this.y)
     }
 
     update() {

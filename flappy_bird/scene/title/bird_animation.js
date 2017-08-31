@@ -45,8 +45,10 @@ class BirdAnimation extends BaseAnimation{
         for (let p of pipes) {
             if (firstInSecond(this, p) || firstInSecond(p, this)) {
                 scene.end = true
-                let label = BaseLabel.new(this.game, '游戏结束')
-                scene.__addElement(label)
+                let label1 = BaseLabel.new(this.game, '游戏结束', 250, 450)
+                let label2 = BaseLabel.new(this.game, '按 k 重新开始游戏', 160, 650)
+                scene.__addElement(label1)
+                scene.__addElement(label2)
             }
         }
     }

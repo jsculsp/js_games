@@ -7,6 +7,12 @@ class SceneTitle extends BaseScene {
         super(game)
         this.setup()
         this.setupInputs()
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'k' && this.end === true) {
+                this.setup()
+                this.setupInputs()
+            }
+        })
     }
 
     setup() {
