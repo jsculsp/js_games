@@ -12,7 +12,6 @@ class Pipes {
         this.pipes = []
         this.pipeSpace = 250
         this.gap = 300
-        this.gapChanged = false
         this.columsOfPipe = 3
         this.__setPipes(this.gap, this.pipeSpace)
     }
@@ -26,7 +25,7 @@ class Pipes {
             p2.x = p1.x
             this.resetPipesPosition(p1, p2)
             this.pipes.push(p1)
-            this.pipes.push(p2  )
+            this.pipes.push(p2)
         }
     }
 
@@ -44,9 +43,7 @@ class Pipes {
             // 管子横向间距
             if (this.gap !== config.gap.value) {
                 this.gap = config.gap.value
-                this.gapChanged = true
-            } else{
-                this.gapChanged = false
+                this.debugResetup()
             }
         }
     }
@@ -72,18 +69,14 @@ class Pipes {
     }
 
     update() {
-        if (this.gapChanged) {
-            this.debugResetup()
-        } else {
-            for (let i = 0; i < this.pipes.length; i += 2) {
-                let p1 = this.pipes[i]
-                let p2 = this.pipes[i+1]
-                for (let p of [p1, p2]) {
-                    p.x -= 5
-                    if (p.x < -100) {
-                        p.x += this.columsOfPipe * (2 * p.w + this.gap)
-                        this.resetPipesPosition(p1, p2)
-                    }
+        for (let i = 0; i < this.pipes.length; i += 2) {
+            let p1 = this.pipes[i]
+            let p2 = this.pipes[i+1]
+            for (let p of [p1, p2]) {
+                p.x -= 5
+                if (p.x < -100) {
+                    p.x += this.columsOfPipe * (2 * p.w + this.gap)
+                    this.resetPipesPosition(p1, p2)
                 }
             }
         }
