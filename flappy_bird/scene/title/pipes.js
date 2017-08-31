@@ -83,7 +83,7 @@ class Pipes {
     }
 
     resetPipesPosition(p1, p2) {
-        p1.y = randomBetween(-50, 300)
+        p1.y = randomBetween(-50, 250)
         p2.y = p1.y + p1.h + this.pipeSpace
     }
 }
