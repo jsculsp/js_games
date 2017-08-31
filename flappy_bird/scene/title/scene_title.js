@@ -10,6 +10,7 @@ class SceneTitle extends BaseScene {
     }
 
     setup() {
+        this.end = false
         // 背景
         let bg = Bg.new(this.game)
         this.__addElement(bg)

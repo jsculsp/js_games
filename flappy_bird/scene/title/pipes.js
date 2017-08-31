@@ -9,6 +9,7 @@ class Pipes {
     }
 
     setup() {
+        this.speed = 5
         this.pipes = []
         this.pipeSpace = 160
         this.gap = 200
@@ -59,7 +60,7 @@ class Pipes {
             let scaleX = p.flipX ? -1: 1
             let scaleY = p.flipY ? -1: 1
             ctx.scale(scaleX, scaleY)
-            ctx.rotate(p.rotation * Math.PI / 180)
+            // ctx.rotate(p.rotation * Math.PI / 180)
             ctx.translate(-w2, -h2)
             // Draw the image
             ctx.drawImage(p.texture, 0, 0, p.w * 2, p.h * 2)
@@ -69,11 +70,15 @@ class Pipes {
     }
 
     update() {
+        let s = this.game.scene
+        if (s.end) {
+            return
+        }
         for (let i = 0; i < this.pipes.length; i += 2) {
             let p1 = this.pipes[i]
             let p2 = this.pipes[i+1]
             for (let p of [p1, p2]) {
-                p.x -= 5
+                p.x -= this.speed
                 if (p.x < -100) {
                     p.x += this.columsOfPipe * (2 * p.w + this.gap)
                     this.resetPipesPosition(p1, p2)

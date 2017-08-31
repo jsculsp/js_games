@@ -10,6 +10,7 @@ class Field {
     }
 
     setup() {
+        this.speed = 5
         // 循环移动地面
         this.grounds = []
         for (let i = 0; i < 10; i++) {
@@ -23,9 +24,13 @@ class Field {
     }
 
     update() {
+        let s = this.game.scene
+        if (s.end) {
+            return
+        }
         // 地面移动
         this.skipCount--
-        let offset = -5
+        let offset = -this.speed
         if (this.skipCount === 0) {
             this.skipCount = 50
             offset = 245

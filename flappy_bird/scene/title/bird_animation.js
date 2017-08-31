@@ -38,9 +38,19 @@ class BirdAnimation extends BaseAnimation{
         // 更新角度
         if (this.rotation < 90) {
             this.rotation += 5
-        }    
+        }
+        // 判断和管道相撞
+        let pipes = this.game.scene.pipes.pipes
+        let scene = this.game.scene
+        for (let p of pipes) {
+            if (firstInSecond(this, p) || firstInSecond(p, this)) {
+                scene.end = true
+                let label = BaseLabel.new(this.game, '游戏结束')
+                scene.__addElement(label)
+            }
+        }
     }
-    
+
     draw() {
         let ctx = this.game.context
         ctx.save()
