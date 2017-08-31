@@ -8,7 +8,7 @@ const config = {
         value: 60,
     },
     pip_space: {
-        _comment: '2 根管子垂直方向的间距',
+        _comment: '管子垂直方向间距',
         value: 250,
     },
     gap: {

@@ -11,7 +11,7 @@ const templateControl = function (key, item) {
                        value="${item.value}"
                        data-value="config.${key}"
                 >
-                ${item._comment}：<span class="label"></span>
+                ${item._comment}：<span class="label">${item.value}</span>
             </label>
         </div>
     `
