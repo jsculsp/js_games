@@ -1,15 +1,28 @@
 class Pipes {
     constructor(game) {
         this.game = game
+        this.setup()
+    }
+
+    static new(...args) {
+        return new this(...args)
+    }
+
+    setup() {
         this.pipes = []
         this.pipeSpace = 250
         this.gap = 300
+        this.gapChanged = false
         this.columsOfPipe = 3
+        this.__setPipes(this.gap, this.pipeSpace)
+    }
+
+    __setPipes() {
         for (let i = 0; i < this.columsOfPipe; i++) {
-            let p1 = Pipe.new(game)
+            let p1 = Pipe.new(this.game)
             p1.flipY = true
-            p1.x = (2 + i) * (this.gap + p1.w)
-            let p2 = Pipe.new(game)
+            p1.x = 600 + i * (this.gap + 2 * p1.w)
+            let p2 = Pipe.new(this.game)
             p2.x = p1.x
             this.resetPipesPosition(p1, p2)
             this.pipes.push(p1)
@@ -17,8 +30,11 @@ class Pipes {
         }
     }
 
-    static new(...args) {
-        return new this(...args)
+    debugResetup() {
+        this.pipes = []
+        this.pipeSpace = config.pip_space.value
+        this.gap = config.gap.value
+        this.__setPipes()
     }
 
     debug(bool) {
@@ -26,7 +42,12 @@ class Pipes {
             // 2 根管子垂直方向的间距
             this.pipeSpace = config.pip_space.value
             // 管子横向间距
-            this.gap = config.gap.value
+            if (this.gap !== config.gap.value) {
+                this.gap = config.gap.value
+                this.gapChanged = true
+            } else{
+                this.gapChanged = false
+            }
         }
     }
 
@@ -51,14 +72,18 @@ class Pipes {
     }
 
     update() {
-        for (let i = 0; i < this.pipes.length; i += 2) {
-            let p1 = this.pipes[i]
-            let p2 = this.pipes[i+1]
-            for (let p of [p1, p2]) {
-                p.x -= 5
-                if (p.x < -p.w - this.gap) {
-                    p.x += this.columsOfPipe * (p.w + this.gap)
-                    this.resetPipesPosition(p1, p2)
+        if (this.gapChanged) {
+            this.debugResetup()
+        } else {
+            for (let i = 0; i < this.pipes.length; i += 2) {
+                let p1 = this.pipes[i]
+                let p2 = this.pipes[i+1]
+                for (let p of [p1, p2]) {
+                    p.x -= 5
+                    if (p.x < -100) {
+                        p.x += this.columsOfPipe * (2 * p.w + this.gap)
+                        this.resetPipesPosition(p1, p2)
+                    }
                 }
             }
         }
